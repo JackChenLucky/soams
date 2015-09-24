@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzsckj.soams.service.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.hzsckj.soams.entity.User" >
+    <id column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="loginname" property="loginname" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="staffname" property="staffname" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="weixin" property="weixin" jdbcType="VARCHAR" />
+    <result column="telphone" property="telphone" jdbcType="VARCHAR" />
+    <result column="dcflag" property="dcflag" jdbcType="VARCHAR" />
+    <result column="createdt" property="createdt" jdbcType="TIMESTAMP" />
+    <result column="superadmin" property="superadmin" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userid, loginname, password, staffname, email, qq, weixin, telphone, dcflag, createdt, 
+    superadmin
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_users
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <select id="findUserByLoginName" resultType="com.hzsckj.soams.entity.User">
+    select
+    <include refid="Base_Column_List" />
+    from tb_users
+    where loginname=#{loginName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_users
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzsckj.soams.entity.User" >
+    insert into tb_users (userid, loginname, password, 
+      staffname, email, qq, 
+      weixin, telphone, dcflag, 
+      createdt, superadmin)
+    values (#{userid,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{staffname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{weixin,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}, #{dcflag,jdbcType=VARCHAR}, 
+      #{createdt,jdbcType=TIMESTAMP}, #{superadmin,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzsckj.soams.entity.User" >
+    insert into tb_users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="loginname != null" >
+        loginname,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="staffname != null" >
+        staffname,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="weixin != null" >
+        weixin,
+      </if>
+      <if test="telphone != null" >
+        telphone,
+      </if>
+      <if test="dcflag != null" >
+        dcflag,
+      </if>
+      <if test="createdt != null" >
+        createdt,
+      </if>
+      <if test="superadmin != null" >
+        superadmin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="loginname != null" >
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="staffname != null" >
+        #{staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="dcflag != null" >
+        #{dcflag,jdbcType=VARCHAR},
+      </if>
+      <if test="createdt != null" >
+        #{createdt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="superadmin != null" >
+        #{superadmin,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzsckj.soams.entity.User" >
+    update tb_users
+    <set >
+      <if test="loginname != null" >
+        loginname = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="staffname != null" >
+        staffname = #{staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        weixin = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        telphone = #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="dcflag != null" >
+        dcflag = #{dcflag,jdbcType=VARCHAR},
+      </if>
+      <if test="createdt != null" >
+        createdt = #{createdt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="superadmin != null" >
+        superadmin = #{superadmin,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzsckj.soams.entity.User" >
+    update tb_users
+    set loginname = #{loginname,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      staffname = #{staffname,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      telphone = #{telphone,jdbcType=VARCHAR},
+      dcflag = #{dcflag,jdbcType=VARCHAR},
+      createdt = #{createdt,jdbcType=TIMESTAMP},
+      superadmin = #{superadmin,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+
+</mapper>
