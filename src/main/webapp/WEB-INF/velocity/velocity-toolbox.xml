@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 界面传入session -->
+<toolbox scope="session">
+	<tool key="map" class="java.util.HashMap"/>
+</toolbox> 
